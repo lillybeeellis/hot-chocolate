@@ -1,32 +1,39 @@
 <script>
-let name = ""
-let tempC = 20
-$: tempF = Math.round ( 1.8 + 32)
- </script>
+  let name = "";
+  let tempC = 20;
+  $: tempF = Math.round(1.8 + 32);
+</script>
 
-<h1>Hot Chocolate </h1>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Hot Chocolate
+      </h1>
+      <h2 class="subtitle">
+        How hot do you like your hot chocolate?
+      </h2>
+    </div>
+  </div>
+</section>
 
-<label>
-Name:
-<input type="text" bind:value={name}>
-</label>
+<section class="section">
+  <label class="label">
+    Name:
+    <input class="input" type="text" bind:value={name} />
+  </label>
 
+  <label class="label">
+    Drink temperature:
+    <input class="input" type="range" min="0" max="100" bind:value={tempC} />
+  </label>
 
-<label>
-Drink temperature:
- <input type="range" min="0" max="100" bind:value={tempC}>
-</label>
+  {#if name.length > 0}
+    <p>Hi <strong>{name}</strong>, your drink is <strong>{tempC}°C </strong>({tempF})°F.</p>
 
-{#if name.length > 0}
- <p>Hi {name}, your drink is {tempC} degrees ({tempF}) degrees fahrenheit.</p>
+    {#if tempC < 40}
+      ... fairly tepid ❄
+    {:else if tempC > 90}️ ... very hot 🔥{:else}... looks good ☕️{/if}
+  {/if}
 
-
-{#if tempC < 40}
-... fairly tepid ❄
-{:else if tempC > 90}   ️
-... very hot 🔥
-{:else}
-... looks good ☕️
-{/if}
-
-{/if}
+</section>
