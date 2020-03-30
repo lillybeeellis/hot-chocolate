@@ -16,4 +16,16 @@ Drink temperature:
  <input type="range" min="0" max="100" bind:value={temp}>
 </label>
 
-<p>Hi {name}, your drink is {temp} degrees.</p>
+{#if name.length > 0}
+ <p>Hi {name}, your drink is {temp} degrees.</p>
+
+
+{#if temp < 40}
+... fairly tepid ❄
+{:else if temp > 90}   ️
+... very hot 🔥
+{:else}
+... looks good ☕️
+{/if}
+
+{/if}
